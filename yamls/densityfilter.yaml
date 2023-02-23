@@ -1,0 +1,36 @@
+id: DensityFilter-{VER}
+meta:
+  title: Density Filter {VER}
+  subtitle: >-
+    Density filter a coordinate space to remove noisy data points
+  description: >
+    Density filter a coordinate space to remove noisy data points
+endpoints:
+  backend:
+    cmd: python ./densityfilter.py
+    type: docker
+    image: {GBOX}
+frontend:
+  args:
+    - type: number
+      injectInto: threshold
+      default: 10
+      step: 0.1
+      label: Percent threshold to filter
+      description: This threshold is computed as a fraction of the max density sampled along a grid
+    - type: number
+      injectInto: gridsize
+      default: 100
+      step: 1
+      label: The gridsize to estimate density
+      description: The grid extends from the min and max coordinates for each dimension and is partitioned into gridsizesquares
+  imports:
+    - kind: sampleCoords
+      label: Visualization data to plot
+      injectInto: coords
+    - kind: assay
+      label: The assay to filter
+      injectInto: assay
+  exports:
+    - kind: assay
+      extractFrom: Density filtered assay
