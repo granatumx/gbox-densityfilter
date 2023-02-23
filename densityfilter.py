@@ -80,7 +80,9 @@ def main():
         savefig_kwargs={'bbox_inches': 'tight'})
 
     # Begin filtering
-    assay = assay.loc[:, kernel(coords) > thresh]
+    densities = kernel(coords.T)
+    print("Shape of densities = {}".format(densities.shape), flush=True)
+    assay = assay.loc[:, densities > thresh]
     gn.export_statically(gn.assay_from_pandas(assay), 'Density filtered assay')
 
     gn.commit()
