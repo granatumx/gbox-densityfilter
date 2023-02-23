@@ -73,7 +73,7 @@ def main():
     kernel = st.gaussian_kde(coords.T)
     Z = np.reshape(kernel(positions).T, X.shape)   # First get densities for plot
     thresh = Z.max() * threshold/100.0             # Absolute density threshold
-    plt.contour(X, Y, Z, levels=[thresh], linewidths=0.1
+    plt.contour(X, Y, Z, levels=[thresh], linewidths=0.1)
     gn.add_current_figure_to_results(
         "Scatter-plot",
         dpi=target_dpi,
