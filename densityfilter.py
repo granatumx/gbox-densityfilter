@@ -38,7 +38,7 @@ def main():
     gridsize = gn.get_arg("gridsize")
     sigfigs = 2
     numticks = 6
-    font = "Arial"
+    font = 10
 
     coords = sample_coords.get("coords")
     coords = pd.DataFrame({"x": [a[0] for a in coords.values()], "y": [a[1] for a in coords.values()]}, index=coords.keys()) 
@@ -49,8 +49,6 @@ def main():
     target_dpi=300
     target_width=7.5 # inches
     target_height=6.5 # inches
-    font_size_in_in=font/72.0 # inches
-    font_size_in_px=font_size_in_in*target_dpi
 
     plt.figure()
     plt.scatter(coords[:, 0], coords[:, 1], s=5000/assay.shape[0])
