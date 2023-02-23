@@ -51,7 +51,7 @@ def main():
     target_height=6.5 # inches
 
     plt.figure()
-    plt.scatter(coords[:, 0], coords[:, 1], s=5000/assay.shape[0])
+    plt.scatter(coords["x"], coords["y"], s=5000/assay.shape[0])
     xmin, xmax = plt.gca().get_xlim()
     ymin, ymax = plt.gca().get_ylim()
     xtickArray = resetArray(xmin, xmax, numticks, sigfigs)
